@@ -1,54 +1,58 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Relatório de Grupos de Itens - Escritório/TI</title>
+  <title>Relatório de Grupos de Itens - Escritório/TI (Ordenado por Mix)</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Changed font */
-      background-color: #f0f4f8; /* Added a light background to the page */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
     }
     .report-table {
       border-collapse: collapse;
-      width: 90%; /* Changed width to percentage */
-      margin: 20px auto; /* Added margin for centering */
-      background-color: #ffffff; /* White background for the table */
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Added subtle shadow */
-      border: 1px solid #cccccc; /* Changed main table border */
+      width: 90%;
+      margin: 20px auto;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border: 1px solid #cccccc;
     }
     .report-table th,
     .report-table td {
-      border: 1px solid #d1d9e1; /* Lighter cell borders */
-      padding: 10px 12px; /* Added padding */
-      font-size: 0.9em; /* Slightly smaller font */
+      border: 1px solid #d1d9e1;
+      padding: 10px 12px;
+      font-size: 0.9em;
     }
     .report-table th {
-      background-color: #00796b; /* Different header background color (Teal) */
-      color: #ffffff; /* White header text */
-      text-align: center; /* Center align headers */
-      font-weight: bold; /* Bold header text */
-      height: 35pt; /* Adjusted height */
+      background-color: #00796b; /* Teal header */
+      color: #ffffff;
+      text-align: center;
+      font-weight: bold;
+      height: 35pt;
     }
     .report-table td {
-      height: 35pt; /* Adjusted height */
-      vertical-align: middle; /* Center vertically */
+      height: 35pt;
+      vertical-align: middle;
     }
     .report-table tr:nth-child(even) {
-      background-color: #e0f2f1; /* Subtle striping for rows (Light Teal) */
+      background-color: #e0f2f1; /* Light Teal striping */
     }
     .report-table tr:hover {
-      background-color: #b2dfdb; /* Highlight row on hover (Medium Teal) */
+      background-color: #b2dfdb; /* Medium Teal hover */
     }
-    .col-codigo { text-align: center; font-family: Consolas, 'Courier New', monospace; } /* Specific style for code */
-    .col-descricao { text-align: left; } /* Left align description */
+    .col-codigo { text-align: center; font-family: Consolas, 'Courier New', monospace; }
+    .col-descricao { text-align: left; }
     .col-status { text-align: center; }
-    .col-consultado { text-align: center; }
-    .status-ativo { color: #1a8a00; font-weight: bold; } /* Style for 'Ativo' */
-    .status-desativado { color: #c0392b; font-weight: bold; } /* Style for 'Desativado' */
+    .col-mix {
+      text-align: right; /* Right-align percentage */
+      font-weight: bold;
+      padding-right: 15px; /* Add padding for better spacing */
+     }
+    .status-ativo { color: #1a8a00; font-weight: bold; }
+    .status-desativado { color: #c0392b; font-weight: bold; }
   </style>
 </head>
 <body>
 
-<h2 style="text-align:center; color: #333;">Relatório Aleatório de Grupos - Escritório e TI</h2>
+<h2 style="text-align:center; color: #333;">Relatório Aleatório de Grupos - Escritório e TI (Ordenado por Mix Cliente)</h2>
 
 <table class="report-table">
   <thead>
@@ -56,124 +60,125 @@
       <th>Codigo Grupo</th>
       <th>Descricao Grupo</th>
       <th>Status</th>
-      <th>Consultado</th>
+      <th>% Mix do cliente</th> {/* Header Changed */}
     </tr>
   </thead>
   <tbody>
+    {/* Rows are now sorted by the last column (descending) */}
     <tr>
       <td class="col-codigo">752010</td>
       <td class="col-descricao">PAPELARIA - RESMAS A4/A3</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
-    </tr>
-    <tr>
-      <td class="col-codigo">753005</td>
-      <td class="col-descricao">CANETAS E MARCADORES DIVERSOS</td>
-      <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Nao</td>
-    </tr>
-    <tr>
-      <td class="col-codigo">811040</td>
-      <td class="col-descricao">CARTUCHOS DE TINTA INKJET</td>
-      <td class="col-status status-desativado">Desativado</td>
-      <td class="col-consultado">Nao</td>
+      <td class="col-mix">100%</td> {/* New Column + Data */}
     </tr>
     <tr>
       <td class="col-codigo">811055</td>
       <td class="col-descricao">TONERS PARA IMPRESSORA LASER</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
+      <td class="col-mix">98%</td> {/* New Column + Data */}
     </tr>
-    <tr>
+     <tr>
       <td class="col-codigo">820510</td>
       <td class="col-descricao">PERIFERICOS - TECLADOS USB</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
+      <td class="col-mix">95%</td> {/* New Column + Data */}
     </tr>
     <tr>
-      <td class="col-codigo">820520</td>
-      <td class="col-descricao">PERIFERICOS - MOUSES OPTICOS</td>
-      <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Nao</td>
-    </tr>
-    <tr>
-      <td class="col-codigo">831000</td>
-      <td class="col-descricao">CABOS DE REDE CAT5E/CAT6</td>
-      <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
-    </tr>
-    <tr>
-      <td class="col-codigo">832000</td>
-      <td class="col-descricao">CABOS DE VIDEO HDMI/VGA</td>
-      <td class="col-status status-desativado">Desativado</td>
-      <td class="col-consultado">Nao</td>
-    </tr>
-    <tr>
-      <td class="col-codigo">760100</td>
-      <td class="col-descricao">MATERIAL DE ESCRITORIO GERAL</td>
-      <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
-    </tr>
-    <tr>
-      <td class="col-codigo">822030</td>
-      <td class="col-descricao">MONITORES LCD/LED 19-24 POL</td>
-      <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Nao</td>
-    </tr>
+        <td class="col-codigo">753005</td>
+        <td class="col-descricao">CANETAS E MARCADORES DIVERSOS</td>
+        <td class="col-status status-ativo">Ativo</td>
+        <td class="col-mix">92%</td> {/* New Column + Data */}
+      </tr>
     <tr>
       <td class="col-codigo">840100</td>
       <td class="col-descricao">COMPONENTES - MEMORIA RAM DDR4</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
+      <td class="col-mix">90%</td> {/* New Column + Data */}
     </tr>
     <tr>
       <td class="col-codigo">840200</td>
       <td class="col-descricao">COMPONENTES - DISCOS SSD SATA</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
+      <td class="col-mix">88%</td> {/* New Column + Data */}
     </tr>
-    <tr>
-      <td class="col-codigo">780500</td>
-      <td class="col-descricao">LIMPEZA - PRODUTOS PARA ESCRITORIO</td>
-      <td class="col-status status-desativado">Desativado</td>
-      <td class="col-consultado">Nao</td>
-    </tr>
-    <tr>
-      <td class="col-codigo">999010</td>
-      <td class="col-descricao">SUPRIMENTOS DIVERSOS TI</td>
+     <tr>
+      <td class="col-codigo">831000</td>
+      <td class="col-descricao">CABOS DE REDE CAT5E/CAT6</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Nao</td>
+      <td class="col-mix">85%</td> {/* New Column + Data */}
     </tr>
     <tr>
       <td class="col-codigo">823000</td>
       <td class="col-descricao">WEBCAMS E MICROFONES USB</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
-    </tr>
-    <tr>
-      <td class="col-codigo">754000</td>
-      <td class="col-descricao">PASTAS E ARQUIVAMENTO</td>
-      <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Nao</td>
+      <td class="col-mix">81%</td> {/* New Column + Data */}
     </tr>
     <tr>
       <td class="col-codigo">850100</td>
       <td class="col-descricao">EQUIPAMENTOS DE REDE - SWITCHES</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
+      <td class="col-mix">75%</td> {/* New Column + Data */}
     </tr>
+    <tr>
+      <td class="col-codigo">822030</td>
+      <td class="col-descricao">MONITORES LCD/LED 19-24 POL</td>
+      <td class="col-status status-ativo">Ativo</td>
+      <td class="col-mix">70%</td> {/* New Column + Data */}
+    </tr>
+    <tr>
+        <td class="col-codigo">760100</td>
+        <td class="col-descricao">MATERIAL DE ESCRITORIO GERAL</td>
+        <td class="col-status status-ativo">Ativo</td>
+        <td class="col-mix">65%</td> {/* New Column + Data */}
+      </tr>
+    <tr>
+        <td class="col-codigo">820520</td>
+        <td class="col-descricao">PERIFERICOS - MOUSES OPTICOS</td>
+        <td class="col-status status-ativo">Ativo</td>
+        <td class="col-mix">60%</td> {/* New Column + Data */}
+      </tr>
     <tr>
       <td class="col-codigo">850200</td>
       <td class="col-descricao">EQUIPAMENTOS DE REDE - ROTEADORES</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Sim</td>
+      <td class="col-mix">55%</td> {/* New Column + Data */}
+    </tr>
+    <tr>
+      <td class="col-codigo">754000</td>
+      <td class="col-descricao">PASTAS E ARQUIVAMENTO</td>
+      <td class="col-status status-ativo">Ativo</td>
+      <td class="col-mix">40%</td> {/* New Column + Data */}
     </tr>
     <tr>
       <td class="col-codigo">824000</td>
       <td class="col-descricao">ACESSORIOS - ADAPTADORES E HUBS</td>
       <td class="col-status status-ativo">Ativo</td>
-      <td class="col-consultado">Nao</td>
+      <td class="col-mix">35%</td> {/* New Column + Data */}
     </tr>
+    <tr>
+      <td class="col-codigo">999010</td>
+      <td class="col-descricao">SUPRIMENTOS DIVERSOS TI</td>
+      <td class="col-status status-ativo">Ativo</td>
+      <td class="col-mix">20%</td> {/* New Column + Data */}
+    </tr>
+    <tr>
+        <td class="col-codigo">811040</td>
+        <td class="col-descricao">CARTUCHOS DE TINTA INKJET</td>
+        <td class="col-status status-desativado">Desativado</td>
+        <td class="col-mix">15%</td> {/* New Column + Data */}
+      </tr>
+    <tr>
+        <td class="col-codigo">832000</td>
+        <td class="col-descricao">CABOS DE VIDEO HDMI/VGA</td>
+        <td class="col-status status-desativado">Desativado</td>
+        <td class="col-mix">10%</td> {/* New Column + Data */}
+      </tr>
+    <tr>
+        <td class="col-codigo">780500</td>
+        <td class="col-descricao">LIMPEZA - PRODUTOS PARA ESCRITORIO</td>
+        <td class="col-status status-desativado">Desativado</td>
+        <td class="col-mix">0%</td> {/* New Column + Data */}
+      </tr>
   </tbody>
 </table>
 
