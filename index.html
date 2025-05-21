@@ -3,41 +3,140 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Relatório de Grupos de Itens - Escritório/TI (Ordenado por Mix)</title>
   <style>
+    :root {
+      --body-bg-light: #f0f4f8;
+      --text-color-light: #333333; /* General text, h2 */
+      --table-bg-light: #ffffff;
+      --table-border-light: #cccccc;
+      --table-text-color-light: #000000; /* Text within table cells */
+      --table-header-bg-light: #00796b;
+      --table-header-text-light: #ffffff;
+      --table-row-even-bg-light: #e0f2f1;
+      --table-row-hover-bg-light: #b2dfdb;
+      --status-ativo-light: #1a8a00;
+      --status-desativado-light: #c0392b;
+      --button-bg-light: #00796b;
+      --button-text-light: #ffffff;
+      --button-border-light: #004d40;
+    }
+
+    body.dark-mode {
+      --body-bg-dark: #121212;
+      --text-color-dark: #e0e0e0; /* General text, h2 */
+      --table-bg-dark: #1e1e1e;
+      --table-border-dark: #444444;
+      --table-text-color-dark: #f5f5f5; /* Text within table cells */
+      --table-header-bg-dark: #004d40;
+      --table-header-text-dark: #e0e0e0;
+      --table-row-even-bg-dark: #2c2c2c;
+      --table-row-hover-bg-dark: #383838;
+      --status-ativo-dark: #66ff66; /* Brighter green for dark mode */
+      --status-desativado-dark: #ff7777; /* Brighter red for dark mode */
+      --button-bg-dark: #004d40;
+      --button-text-dark: #e0e0e0;
+      --button-border-dark: #00796b;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f4f8;
+      background-color: var(--body-bg-light);
+      color: var(--text-color-light);
+      margin: 0;
+      padding-top: 1px; /* Prevent margin collapse with h2 */
     }
+    body.dark-mode {
+      background-color: var(--body-bg-dark);
+      color: var(--text-color-dark);
+    }
+
+    h2 { /* Styling for the main heading */
+      text-align:center;
+      color: var(--text-color-light); /* Uses general text color for light mode */
+      margin-top: 20px; /* Added margin for spacing */
+      margin-bottom: 10px;
+    }
+    body.dark-mode h2 {
+      color: var(--text-color-dark); /* Uses general text color for dark mode */
+    }
+
+    #darkModeToggle {
+      display: block;
+      padding: 10px 18px;
+      border: 1px solid var(--button-border-light);
+      background-color: var(--button-bg-light);
+      color: var(--button-text-light);
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 0.9em;
+      margin: 15px auto 20px auto; /* Adjusted margin for centering and spacing */
+      min-width: 150px;
+      text-align: center;
+    }
+    body.dark-mode #darkModeToggle {
+      border: 1px solid var(--button-border-dark);
+      background-color: var(--button-bg-dark);
+      color: var(--button-text-dark);
+    }
+
     .report-table {
       border-collapse: collapse;
       width: 90%;
       margin: 20px auto;
-      background-color: #ffffff;
+      background-color: var(--table-bg-light);
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      border: 1px solid #cccccc;
+      border: 1px solid var(--table-border-light);
+      color: var(--table-text-color-light);
     }
+    body.dark-mode .report-table {
+      background-color: var(--table-bg-dark);
+      border: 1px solid var(--table-border-dark);
+      color: var(--table-text-color-dark);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Slightly adjusted shadow for dark mode */
+    }
+
     .report-table th,
     .report-table td {
-      border: 1px solid #d1d9e1;
+      border: 1px solid var(--table-border-light); /* Uses table border color for light */
       padding: 10px 12px;
       font-size: 0.9em;
+      vertical-align: middle; /* Ensures vertical alignment is consistent */
     }
+    body.dark-mode .report-table th,
+    body.dark-mode .report-table td {
+      border: 1px solid var(--table-border-dark); /* Uses table border color for dark */
+    }
+
     .report-table th {
-      background-color: #00796b;
-      color: #ffffff;
+      background-color: var(--table-header-bg-light);
+      color: var(--table-header-text-light);
       text-align: center;
       font-weight: bold;
       height: 35pt;
     }
+    body.dark-mode .report-table th {
+      background-color: var(--table-header-bg-dark);
+      color: var(--table-header-text-dark);
+    }
+
     .report-table td {
       height: 35pt;
-      vertical-align: middle;
+      /* Text color for td is inherited from .report-table */
     }
+
     .report-table tr:nth-child(even) {
-      background-color: #e0f2f1;
+      background-color: var(--table-row-even-bg-light);
     }
+    body.dark-mode .report-table tr:nth-child(even) {
+      background-color: var(--table-row-even-bg-dark);
+    }
+
     .report-table tr:hover {
-      background-color: #b2dfdb;
+      background-color: var(--table-row-hover-bg-light);
     }
+    body.dark-mode .report-table tr:hover {
+      background-color: var(--table-row-hover-bg-dark);
+    }
+
     .col-codigo { text-align: center; font-family: Consolas, 'Courier New', monospace; }
     .col-descricao { text-align: left; }
     .col-status { text-align: center; }
@@ -46,13 +145,18 @@
       font-weight: bold;
       padding-right: 15px;
      }
-    .status-ativo { color: #1a8a00; font-weight: bold; }
-    .status-desativado { color: #c0392b; font-weight: bold; }
+
+    .status-ativo { color: var(--status-ativo-light); font-weight: bold; }
+    body.dark-mode .status-ativo { color: var(--status-ativo-dark); }
+
+    .status-desativado { color: var(--status-desativado-light); font-weight: bold; }
+    body.dark-mode .status-desativado { color: var(--status-desativado-dark); }
   </style>
 </head>
 <body>
 
-<h2 style="text-align:center; color: #333;">Relatório Aleatório de Grupos - Escritório e TI (Ordenado por Mix Cliente)</h2>
+<h2 style="text-align:center;">Relatório Aleatório de Grupos - Escritório e TI (Ordenado por Mix Cliente)</h2>
+<button id="darkModeToggle">Toggle Theme</button>
 
 <table class="report-table">
   <thead>
@@ -180,6 +284,45 @@
       </tr>
   </tbody>
 </table>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const toggleButton = document.getElementById('darkModeToggle');
+
+    // Function to apply the theme and update button text
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        body.classList.add('dark-mode');
+        toggleButton.textContent = 'Activate Light Mode';
+      } else {
+        body.classList.remove('dark-mode');
+        toggleButton.textContent = 'Activate Dark Mode';
+      }
+    }
+
+    // Check for saved theme preference in localStorage
+    const savedTheme = localStorage.getItem('themePreference');
+    if (savedTheme) {
+      applyTheme(savedTheme);
+    } else {
+      // Default to light theme if no preference is saved
+      applyTheme('light');
+    }
+
+    // Event listener for the toggle button
+    toggleButton.addEventListener('click', () => {
+      let newTheme;
+      if (body.classList.contains('dark-mode')) {
+        newTheme = 'light';
+      } else {
+        newTheme = 'dark';
+      }
+      localStorage.setItem('themePreference', newTheme);
+      applyTheme(newTheme);
+    });
+  });
+</script>
 
 </body>
 </html>
