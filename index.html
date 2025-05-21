@@ -59,7 +59,7 @@
       color: var(--text-color-dark); /* Uses general text color for dark mode */
     }
 
-    #darkModeToggle {
+    /* #darkModeToggle {
       display: block;
       padding: 10px 18px;
       border: 1px solid var(--button-border-light);
@@ -76,7 +76,49 @@
       border: 1px solid var(--button-border-dark);
       background-color: var(--button-bg-dark);
       color: var(--button-text-dark);
+    } */
+
+    #themeSwitch {
+      display: flex; /* Use flexbox to align icons */
+      align-items: center; /* Vertically center icons */
+      padding: 5px;
+      border: 1px solid var(--button-border-light);
+      background-color: var(--button-bg-light);
+      border-radius: 20px; /* Make it rounded */
+      cursor: pointer;
+      margin: 15px auto 20px auto; /* Centering and spacing */
+      width: fit-content; /* Adjust width to content */
+      user-select: none; /* Prevent text selection */
     }
+
+    body.dark-mode #themeSwitch {
+      border: 1px solid var(--button-border-dark);
+      background-color: var(--button-bg-dark);
+    }
+
+    #themeSwitch .icon {
+      padding: 5px 8px;
+      font-size: 1.2em; /* Make icons a bit larger */
+      transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    }
+
+    #themeSwitch .icon.active {
+      background-color: var(--table-bg-light); /* A contrasting background for active icon */
+      color: var(--button-bg-light); /* Text color for active icon */
+      border-radius: 15px; /* Rounded background for active icon */
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    body.dark-mode #themeSwitch .icon.active {
+      background-color: var(--table-bg-dark);
+      color: var(--button-bg-dark);
+      box-shadow: 0 0 5px rgba(255,255,255,0.2);
+    }
+
+    /* The .theme-switch-container class is on the #themeSwitch div itself,
+       so no separate rules are strictly needed unless for additional layout
+       if the structure was different. The display:flex and margin:auto on #themeSwitch
+       should handle centering. */
 
     .report-table {
       border-collapse: collapse;
@@ -156,7 +198,10 @@
 <body>
 
 <h2 style="text-align:center;">Relatório Aleatório de Grupos - Escritório e TI (Ordenado por Mix Cliente)</h2>
-<button id="darkModeToggle">Toggle Theme</button>
+<div id="themeSwitch" class="theme-switch-container">
+  <span id="sunIcon" class="icon active">☀️</span>
+  <span id="moonIcon" class="icon">🌙</span>
+</div>
 
 <table class="report-table">
   <thead>
@@ -286,42 +331,46 @@
 </table>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const body = document.body;
-    const toggleButton = document.getElementById('darkModeToggle');
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const themeSwitch = document.getElementById('themeSwitch'); // Changed from toggleButton
+  const sunIcon = document.getElementById('sunIcon');
+  const moonIcon = document.getElementById('moonIcon');
 
-    // Function to apply the theme and update button text
-    function applyTheme(theme) {
-      if (theme === 'dark') {
-        body.classList.add('dark-mode');
-        toggleButton.textContent = 'Activate Light Mode';
-      } else {
-        body.classList.remove('dark-mode');
-        toggleButton.textContent = 'Activate Dark Mode';
-      }
-    }
-
-    // Check for saved theme preference in localStorage
-    const savedTheme = localStorage.getItem('themePreference');
-    if (savedTheme) {
-      applyTheme(savedTheme);
+  // Function to apply the theme and update icon states
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      body.classList.add('dark-mode');
+      moonIcon.classList.add('active');
+      sunIcon.classList.remove('active');
     } else {
-      // Default to light theme if no preference is saved
-      applyTheme('light');
+      body.classList.remove('dark-mode');
+      sunIcon.classList.add('active');
+      moonIcon.classList.remove('active');
     }
+  }
 
-    // Event listener for the toggle button
-    toggleButton.addEventListener('click', () => {
-      let newTheme;
-      if (body.classList.contains('dark-mode')) {
-        newTheme = 'light';
-      } else {
-        newTheme = 'dark';
-      }
-      localStorage.setItem('themePreference', newTheme);
-      applyTheme(newTheme);
-    });
+  // Check for saved theme preference in localStorage
+  const savedTheme = localStorage.getItem('themePreference');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else {
+    // Default to light theme if no preference is saved
+    applyTheme('light'); // Ensure icons are set correctly on first load
+  }
+
+  // Event listener for the theme switch container
+  themeSwitch.addEventListener('click', () => {
+    let newTheme;
+    if (body.classList.contains('dark-mode')) {
+      newTheme = 'light';
+    } else {
+      newTheme = 'dark';
+    }
+    localStorage.setItem('themePreference', newTheme);
+    applyTheme(newTheme);
   });
+});
 </script>
 
 </body>
