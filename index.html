@@ -18,6 +18,7 @@
       --button-bg-light: #00796b;
       --button-text-light: #ffffff;
       --button-border-light: #004d40;
+      --switch-bg-light: #e0e0e0; /* Example soft light background */
     }
 
     body.dark-mode {
@@ -35,6 +36,7 @@
       --button-bg-dark: #004d40;
       --button-text-dark: #e0e0e0;
       --button-border-dark: #00796b;
+      --switch-bg-dark: #333333; /* Example soft dark background */
     }
 
     body {
@@ -83,17 +85,21 @@
       align-items: center; /* Vertically center icons */
       padding: 5px;
       border: 1px solid var(--button-border-light);
-      background-color: var(--button-bg-light);
+      background-color: var(--switch-bg-light);
       border-radius: 20px; /* Make it rounded */
       cursor: pointer;
-      margin: 15px auto 20px auto; /* Centering and spacing */
+      /* margin: 15px auto 20px auto; /* Centering and spacing */
       width: fit-content; /* Adjust width to content */
       user-select: none; /* Prevent text selection */
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      margin: 0; /* Reset margin for fixed positioning */
     }
 
     body.dark-mode #themeSwitch {
       border: 1px solid var(--button-border-dark);
-      background-color: var(--button-bg-dark);
+      background-color: var(--switch-bg-dark);
     }
 
     #themeSwitch .icon {
